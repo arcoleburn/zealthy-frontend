@@ -1,0 +1,10 @@
+.admin{
+  display: flex;
+  justify-content: space-evenly;
+  input, label{
+    transform: scale(2)
+  }
+  label{
+    text-transform: capitalize;
+  }
+}
