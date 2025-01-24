@@ -12,11 +12,9 @@ import Admin from "./scenes/Admin";
 import PageTwo from "./pages/PageTwo";
 import { useAppContext } from "./shared/AppContext/AppContextProvider";
 import Layout from "./shared/Layout";
-import { useToast } from "./shared/ToastContext/ToastContext";
 
 function App() {
   const { isLoggedIn } = useAppContext();
-  const { addToast } = useToast();
   return (
     <>
       <Router>
@@ -34,27 +32,6 @@ function App() {
           </Route>
         </Routes>
       </Router>
-
-      <div className="App">
-        <button
-          className="bg-blue-500 text-white p-2 rounded"
-          onClick={() => addToast("Success message!", "success")}
-        >
-          Show Success Toast
-        </button>
-        <button
-          className="bg-red-500 text-white p-2 rounded ml-4"
-          onClick={() => addToast("Error message!", "error")}
-        >
-          Show Error Toast
-        </button>
-        <button
-          className="bg-blue-500 text-white p-2 rounded ml-4"
-          onClick={() => addToast("Info message!", "info")}
-        >
-          Show Info Toast
-        </button>
-      </div>
     </>
   );
 }
