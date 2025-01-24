@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useAppContext } from "../../shared/AppContext/AppContextProvider";
 import { updateModules } from "../../services/modules";
-
+import { useToast } from "../../shared/ToastContext/ToastContext";
 
 const Admin = () => {
   const { pageOne, pageTwo, setPageOne, setPageTwo } = useAppContext();
+  const { addToast } = useToast();
   const [pendingPageOne, setPendingPageOne] = useState(pageOne);
   const [pendingPageTwo, setPendingPageTwo] = useState(pageTwo);
 
@@ -32,17 +33,21 @@ const Admin = () => {
     }
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (pendingPageOne.length > 0 && pendingPageTwo.length > 0) {
       const body = {
         one: pendingPageOne,
         two: pendingPageTwo,
       };
-      updateModules(body);
+      const updated = await updateModules(body);
       setPageOne(pendingPageOne);
       setPageTwo(pendingPageTwo);
+
+      if (updated.ok) {
+        addToast("Page Config Saved", "success");
+      }
     } else {
-      window.alert("each page must have a module!");
+      addToast("Each page must have at least 1 module!", "error");
     }
   };
 

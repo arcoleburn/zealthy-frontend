@@ -9,14 +9,13 @@ const Birthday: FC = () => {
 
   const handleChange = (val: Date) => {
     updateUser({ birthday: val.toDateString() });
-    console.log(val.toDateString());
   };
 
   return (
     <div className="space-y-4">
     <label className="block text-left text-lg font-semibold">Birthday</label>
     <DatePicker
-      selected={user && new Date(user.birthday)}
+      selected={(user?.birthday && new Date(user.birthday)) || new Date('8/10/1994')}
       onChange={(date) => handleChange(date as Date)}
       className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
     />

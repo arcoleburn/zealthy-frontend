@@ -16,21 +16,23 @@ import Layout from "./shared/Layout";
 function App() {
   const { isLoggedIn } = useAppContext();
   return (
-    <Router>
-      <Routes>
-        <Route element={<Layout />}>
-          ≈
-          <Route
-            path="/"
-            element={isLoggedIn ? <Home /> : <Navigate to="/login" replace />}
-          />
-          <Route path="/page2" element={<PageTwo />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/data" element={<Data />} />
-        </Route>
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route element={<Layout />}>
+            ≈
+            <Route
+              path="/"
+              element={isLoggedIn ? <Home /> : <Navigate to="/login" replace />}
+            />
+            <Route path="/page2" element={<PageTwo />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/data" element={<Data />} />
+          </Route>
+        </Routes>
+      </Router>
+    </>
   );
 }
 

@@ -13,8 +13,6 @@ export const loginOrRegister = async ({
   const res = await api("/login", { body, method: "POST" });
 
   if (res.status === 401) {
-    console.log("incorrect pw");
-    window.alert("incorrect password");
     return res;
   }
 
@@ -36,10 +34,13 @@ export const updateUserinDB = async (
     method: "PUT",
     body: JSON.stringify(user),
   });
-  await api(`/address/${id}`, {
+  const address = await api(`/address/${id}`, {
     method: isNewUser ? "POST" : "PUT",
     body: JSON.stringify(user.address),
   });
-  const parsed = await res.json();
-  return parsed;
+  if (res.ok && address.ok) {
+    const parsed = await res.json();
+    const parsedAddress = await address.json();
+    return [parsed, parsedAddress];
+  }
 };
