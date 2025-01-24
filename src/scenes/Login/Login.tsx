@@ -34,7 +34,7 @@ const Login: FC = () => {
       setIsLoggedIn(true);
       const [address, user] = extractAddress(res);
       setUser({ ...user, address });
-      if (res.ewUser) {
+      if (res.newUser) {
         setIsNewUser(true);
       }
       navigate("/");
