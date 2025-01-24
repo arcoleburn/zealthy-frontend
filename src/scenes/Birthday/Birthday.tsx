@@ -13,13 +13,15 @@ const Birthday: FC = () => {
   };
 
   return (
-    <div>
-      <label>Birthday</label>
-      <DatePicker
-        selected={user && new Date(user.birthday)}
-        onChange={(date) => handleChange(date as Date)}
-      />
-    </div>
+    <div className="space-y-4">
+    <label className="block text-left text-lg font-semibold">Birthday</label>
+    <DatePicker
+      selected={user && new Date(user.birthday)}
+      onChange={(date) => handleChange(date as Date)}
+      className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+    />
+  </div>
+  
   );
 };
 
