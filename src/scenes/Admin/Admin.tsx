@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useAppContext } from "../../shared/AppContext/AppContextProvider";
 import { updateModules } from "../../services/modules";
 
-import styles from "./Admin.module.css";
 
 const Admin = () => {
   const { pageOne, pageTwo, setPageOne, setPageTwo } = useAppContext();
@@ -49,44 +48,50 @@ const Admin = () => {
 
   return (
     <>
-      <div
-        className={styles.admin}      >
-        <div>
-          <h2>Page 1</h2>
+      <div className="p-6 space-y-6 text-left capitalize">
+        {/* Page 1 */}
+        <div className="space-y-4">
+          <h2 className="text-xl font-semibold text-white">Page 1</h2>
           {allModules.map((module) => (
-            <div key={module}>
+            <div key={module} className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 checked={pendingPageOne.includes(module)}
                 onChange={() => toggleModule(module, 1)}
+                className="w-5 h-5"
               />
+              <label className="text-white ">{module}</label>
             </div>
           ))}
         </div>
-        <div>
-          <h2>Modules</h2>
+
+        {/* Page 2 */}
+        <div className="space-y-4">
+          <h2 className="text-xl font-semibold text-white">Page 2</h2>
           {allModules.map((module) => (
-            <div key={module}>
-              <label>{module}</label>
-            </div>
-          ))}
-        </div>
-        <div>
-          <h2>Page 2</h2>
-          {allModules.map((module) => (
-            <div key={module}>
+            <div key={module} className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 checked={pendingPageTwo.includes(module)}
                 onChange={() => toggleModule(module, 2)}
+                className="w-5 h-5"
               />
+              <label className="text-white">{module}</label>
             </div>
           ))}
         </div>
+
+        {/* Save Button */}
+        <div className="flex justify-end space-x-4">
+          <button
+            onClick={handleSave}
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition duration-200"
+          >
+            Save Page Config
+          </button>
+        </div>
       </div>
-      <button onClick={handleSave}>Save Page Config</button>
     </>
   );
 };
-
 export default Admin;
