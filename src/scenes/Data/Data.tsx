@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllUserData } from "../../services/users";
 
-import styles from "./Data.module.css"
-
 const Data = () => {
   const [data, setData] = useState([]);
 
@@ -44,33 +42,43 @@ const Data = () => {
 
     const rows = data.map((user, index) => (
       <tr key={index}>
-        <td>{user.userId}</td>
-        <td>{user.email || ""}</td>
-        <td>{user.aboutMe || ""}</td>
-        <td>{user.birthday || ""}</td>
-        <td>{user.address1 || ""}</td>
-        <td>{user.address2 || ""}</td>
-        <td>{user.city || ""}</td>
-        <td>{user.state || ""}</td>
-        <td>{user.zipcode || ""}</td>
+        <td className="px-4 py-2 border w-15 ">{user.userId}</td>
+        <td className="px-4 py-2 border max-w-50 truncate">{user.email || ""}</td>
+        <td className="px-4 py-2 border max-w-xs truncate">{user.aboutMe || ""}</td>
+        <td className="px-4 py-2 border w-32 truncate">
+          {user.birthday || ""}
+        </td>
+        <td className="px-4 py-2 border w-64 truncate">
+          {user.address1 || ""}
+        </td>
+        <td className="px-4 py-2 border w-64 truncate">
+          {user.address2 || ""}
+        </td>
+        <td className="px-4 py-2 border w-40 truncate">{user.city || ""}</td>
+        <td className="px-4 py-2 border w-32 truncate">{user.state || ""}</td>
+        <td className="px-4 py-2 border w-32 truncate">{user.zipcode || ""}</td>
       </tr>
     ));
 
     return (
-      <table border={15} className={styles.table}>
-        <thead>
-          <tr>
-            {headers.map((header, index) => (
-              <th key={index}>{header}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
+      <div className=" w-full overflow-x-auto">
+        <table className="min-w-full table-auto border-collapse">
+          <thead>
+            <tr className="bg-gray-800 text-white">
+              {headers.map((header, index) => (
+                <th key={index} className="px-4 py-2 text-left border">
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </table>
+      </div>
     );
   };
 
-  return <div>{generateTable(data)}</div>;
+  return <div className="p-4">{generateTable(data)}</div>;
 };
 
 export default Data;

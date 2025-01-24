@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import styles from "./Login.module.css";
 import {
   Address,
   useAppContext,
@@ -41,25 +40,34 @@ const Login: FC = () => {
     }
   };
 
+  
   return (
-    <div className={styles.container}>
-      <label htmlFor="email">Email</label>
+    <div className="bg-gray-200 p-6 rounded-lg w-full max-w-md mx-auto text-left">
+      <label htmlFor="email" className="block text-gray-700 mb-2">Email</label>
       <input
         type="text"
+        id="email"
         value={emailInput}
         onChange={(e) => setEmailInput(e.target.value)}
         required
+        className="w-full p-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 text-black"
       />
-      <label htmlFor="password">Password</label>
+      
+      <label htmlFor="password" className="block text-gray-700 mb-2">Password</label>
       <input
         type="password"
         id="password"
-        name="password"
         value={pwInput}
         onChange={(e) => setPwInput(e.target.value)}
         required
+        className="w-full p-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 text-black"
       />
-      <button disabled={!emailInput || !pwInput} onClick={handleSubmit}>
+      
+      <button
+        onClick={handleSubmit}
+        disabled={!emailInput || !pwInput}
+        className="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
+      >
         Login / Register
       </button>
     </div>
