@@ -5,7 +5,7 @@ const Layout = () => {
   return (
     <div>
       <Nav />
-      <main style={{ padding: "20px" }}>
+      <main className="p-5 max-w-[750px] mx-auto w-full">
         <Outlet />
       </main>
     </div>
