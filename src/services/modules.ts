@@ -11,6 +11,5 @@ export const updateModules = async (body: unknown) => {
     method: "PUT",
     body: JSON.stringify(body),
   });
-  console.log(res)
   return res;
 };

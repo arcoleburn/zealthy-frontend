@@ -69,7 +69,6 @@ export const AppProvider: FC<AppProviderProps> = ({ children }) => {
     const fetchModules = async () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const modules: any = await getModules(); // Await the result
-      console.log(modules);
       const newPageOne: string[] = [];
       const newPageTwo: string[] = [];
 

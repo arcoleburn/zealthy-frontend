@@ -43,10 +43,8 @@ export const updateUserinDB = async (
   });
   if (address.ok) {
     const parsed = await res.json();
-    // const parsedAddress = await address.json();
     return parsed;
   } else{
-    // console.log(address.json())
     return address.text()
   }
 };
