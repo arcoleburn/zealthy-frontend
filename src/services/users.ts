@@ -42,8 +42,7 @@ export const updateUserinDB = async (
     body: JSON.stringify(user.address),
   });
   if (address.ok) {
-    const parsed = await res.json();
-    return parsed;
+    return res
   } else{
     return address.text()
   }

@@ -12,12 +12,11 @@ const PageTwo = () => {
   const navigate = useNavigate();
   const handleSave = async () => {
     const address = user?.address;
-
     if (
-      address?.address1 ||
-      address?.city ||
-      address?.state ||
-      address?.zipcode
+      !address?.address1 ||
+      !address?.city ||
+      !address?.state ||
+      !address?.zipcode
     ) {
       addToast("Misisng Address Details", "error");
       return;
@@ -31,7 +30,7 @@ const PageTwo = () => {
     if (updated.ok) {
       addToast("User Data Saved", "success");
     } else {
-      addToast(updated, "error");
+      addToast(updated.message, "error");
     }
 
     setIsNewUser(false);
