@@ -34,13 +34,19 @@ export const updateUserinDB = async (
     method: "PUT",
     body: JSON.stringify(user),
   });
+  if(!res.ok){
+    return res.json()
+  }
   const address = await api(`/address/${id}`, {
     method: isNewUser ? "POST" : "PUT",
     body: JSON.stringify(user.address),
   });
-  if (res.ok && address.ok) {
+  if (address.ok) {
     const parsed = await res.json();
-    const parsedAddress = await address.json();
-    return [parsed, parsedAddress];
+    // const parsedAddress = await address.json();
+    return parsed;
+  } else{
+    // console.log(address.json())
+    return address.text()
   }
 };

@@ -11,6 +11,17 @@ const PageTwo = () => {
   const { addToast } = useToast();
   const navigate = useNavigate();
   const handleSave = async () => {
+    const address = user?.address;
+
+    if (
+      address?.address1 ||
+      address?.city ||
+      address?.state ||
+      address?.zipcode
+    ) {
+      addToast("Misisng Address Details", "error");
+      return;
+    }
     const updated = await updateUserinDB(
       user?.userId as string,
       user,
@@ -18,8 +29,10 @@ const PageTwo = () => {
     );
     console.log({ updated });
 
-    if (updated) {
+    if (updated.ok) {
       addToast("User Data Saved", "success");
+    } else {
+      addToast(updated, "error");
     }
 
     setIsNewUser(false);
