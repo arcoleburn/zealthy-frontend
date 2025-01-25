@@ -27,7 +27,6 @@ const PageTwo = () => {
       user,
       isNewUser
     );
-    console.log({ updated });
 
     if (updated.ok) {
       addToast("User Data Saved", "success");
