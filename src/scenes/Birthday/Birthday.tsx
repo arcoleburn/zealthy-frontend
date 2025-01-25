@@ -18,6 +18,8 @@ const Birthday: FC = () => {
       selected={(user?.birthday && new Date(user.birthday)) || new Date('8/10/1994')}
       onChange={(date) => handleChange(date as Date)}
       className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+    showMonthDropdown
+    showYearDropdown
     />
   </div>
   
